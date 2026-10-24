@@ -1,5 +1,5 @@
-# tramtau
+# volao
 
-Hệ thống theo dõi thu nộp đảng phí · Đảng bộ xã Trạm Tấu
+Hệ thống theo dõi thu nộp đảng phí · Đảng bộ xã Võ Lao
 
-Trang: https://laocai-cds.github.io/tramtau/
+Trang: https://laocai-cds.github.io/volao/
