@@ -953,7 +953,7 @@ body::before{display:none}
 .bar #reportBtn:hover{background:var(--son-d)}
 .bar #exportBtn{background:#fff;border-color:#d8dee5;color:#3d4855}
 .bar #exportBtn:hover{background:#f8f9fb;border-color:#c3cbd4}
-.notice{width:min(calc(100% - 48px),1376px);height:auto;min-height:44px;margin:16px auto 0;position:relative;background:#fff;border:1px solid var(--rule);border-radius:11px;box-shadow:0 1px 2px #18223008}
+.notice{width:min(calc(100% - 64px),1376px);height:auto;min-height:44px;margin:16px auto 0;position:relative;background:#fff;border:1px solid var(--rule);border-radius:11px;box-shadow:0 1px 2px #18223008;margin-left:auto!important;margin-right:auto!important}
 .nt-badge{background:#fbf5e9;color:#795d2e;border-right:1px solid #eee5d5;padding:0 15px}
 .nt-badge svg{color:var(--vang)}
 .nt-text{font-size:12.5px;color:#45505e}
@@ -1011,17 +1011,18 @@ tbody tr:hover td{background:#f8fafb!important}
 .foot{background:#fff;border-top:1px solid var(--rule)!important;padding:23px 0 28px}
 .credit{border-top-color:var(--rule)}
 .cr-k{color:var(--son)}
-.cr-t b,.copyr b{color:#263241}
+.cr-office{font-size:16px;font-weight:800;letter-spacing:.02em;background:linear-gradient(90deg,#8b1e2d 0%,#b68b48 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.copyr b{color:#8b1e2d}
 .cr-o,.copyr{color:#778292}
 .cr-ic{background:var(--son);box-shadow:none;border-color:#e4e7eb}
 @media(min-width:1024px){.bar .wrap{display:flex;flex-direction:row;align-items:center}.brand{flex:none}.tabs{margin:0 auto}.barright{margin:0;flex-direction:row;gap:8px}.bar .btn{width:auto}}
+@media(max-width:1280px){.notice{width:calc(100% - 52px)}}
 @media(max-width:1023px){
  .bar .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 12px;padding:10px 18px}
  .brand{min-width:0}.brand small{display:block}.brand b{font-size:13px;white-space:normal}
  .barright{margin:0;display:flex;flex-direction:row;gap:6px}
  .tabs{grid-column:1/-1;display:flex;flex-direction:row;overflow-x:auto;gap:4px;padding:2px 0 0;scrollbar-width:thin}
  .tab{flex:none;padding:8px 12px;font-size:12px}
- .notice{width:calc(100% - 28px);margin-top:12px}
+ .notice{width:calc(100% - 32px);margin-top:12px}
  .page{padding:24px 0 42px}
  .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
  .g.g-21,.g.g-11{gap:12px}
@@ -1032,7 +1033,7 @@ tbody tr:hover td{background:#f8fafb!important}
  .brand{gap:9px}.brand b{font-size:11.5px;letter-spacing:.01em}.brand small{font-size:10px}
  .bar .btn{padding:8px 9px;font-size:11px;gap:5px}.bar .btn svg{width:15px;height:15px}
  .tabs{margin:0 -2px}.tab{padding:8px 10px;font-size:11px}
- .notice{width:calc(100% - 20px);min-height:40px}
+ .notice{width:calc(100% - 32px);min-height:40px}
  .nt-badge{padding:0 9px;font-size:10px}.nt-badge svg{width:14px}
  .nt-text{font-size:11px}.notice .livepill{display:none!important}
  .page{padding-top:20px}
@@ -1245,7 +1246,7 @@ tbody tr:hover td{background:#f8fafb!important}
 </section>
 </main>
 
-<footer class="foot"><div class="wrap"><div class="credit"><span class="cr-ic" aria-hidden="true">★</span><div class="cr-t"><span class="cr-k">Thiết kế và phát triển</span><b>Vũ Thế Cường</b><span class="cr-o">Văn phòng Đảng ủy xã Võ Lao</span></div></div><p class="copyr"><span aria-hidden="true">©</span> Bản quyền 2026: <b>Đảng ủy xã Võ Lao</b></p></div></footer>
+<footer class="foot"><div class="wrap"><div class="credit"><span class="cr-ic" aria-hidden="true">★</span><div class="cr-t"><span class="cr-k">Thiết kế và phát triển</span><b class="cr-office">Văn phòng Đảng ủy xã Võ Lao</b></div></div><p class="copyr"><span aria-hidden="true">©</span> Bản quyền 2026: <b>Đảng ủy xã Võ Lao</b></p></div></footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="back" id="ntModal" role="dialog" aria-modal="true" aria-labelledby="ntTitle">
