@@ -1260,7 +1260,7 @@ td{font-size:12px}
 </section>
 </main>
 
-<footer class="foot"><div class="wrap"><div class="credit"><span class="cr-ic" aria-hidden="true">★</span><div class="cr-t"><span class="cr-k">Thiết kế và phát triển</span><b class="cr-office">Văn phòng Đảng ủy xã Võ Lao</b></div></div><p class="copyr"><span aria-hidden="true">©</span> Bản quyền 2026: <b>Đảng ủy xã Võ Lao</b></p></div></footer>
+<footer class="foot"><div class="wrap"><div class="credit"><span class="cr-ic" aria-hidden="true">★</span><div class="cr-t"><span class="cr-k">Thiết kế và phát triển</span><b class="cr-name">Trần Hiền</b><span class="cr-o">Văn phòng Đảng ủy xã Võ Lao</span></div></div><p class="copyr"><span aria-hidden="true">©</span> Bản quyền 2026: <b>Đảng ủy xã Võ Lao</b></p></div></footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="back" id="ntModal" role="dialog" aria-modal="true" aria-labelledby="ntTitle">
@@ -1793,6 +1793,14 @@ td.n,td.c{text-align:center}
 tr{page-break-inside:avoid}
 .ft{display:flex;justify-content:space-between;margin-top:26px;page-break-inside:avoid}
 .ft .nn{font-size:13px}.ft .nn u{font-size:15px}.ft .sg{width:40%;text-align:center;font-weight:700}
+
+/* Chân trang đa sắc: phân biệt rõ tác giả, cơ quan và bản quyền */
+.credit .cr-k{color:#0f766e!important}
+.credit .cr-name{display:block;color:#dc2626!important;font-size:17px;font-weight:800;letter-spacing:.02em;text-shadow:none!important}
+.credit .cr-o{display:block;color:#2563eb!important;font-weight:700}
+.credit .cr-ic{background:linear-gradient(135deg,#f59e0b,#ea580c)!important;color:#fff}
+.copyr{color:#64748b}
+.copyr b{color:#7c3aed!important;font-weight:800}
 </style></head><body>
 <div class="top"><div class="l">ĐẢNG BỘ XÃ VÕ LAO<br>*</div><div class="r"><b>ĐẢNG CỘNG SẢN VIỆT NAM</b><i>Võ Lao, ${dateStr}</i></div></div>
 <div class="tt"><h1>BÁO CÁO</h1><h2>tình hình thu nộp đảng phí trên môi trường điện tử</h2><div>-----</div><div class="src">Nguồn số liệu: bảng theo dõi thu nộp đảng phí trên môi trường điện tử, ${U.length} đơn vị trực thuộc (kỳ báo cáo: tháng ${m}/${y})</div></div>
