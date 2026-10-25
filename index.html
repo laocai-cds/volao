@@ -12,16 +12,16 @@
 <meta property="og:title" content="Hệ thống theo dõi thu nộp đảng phí · Đảng bộ xã Võ Lao">
 <meta property="og:description" content="Theo dõi tiến độ thu nộp đảng phí của các chi bộ, đảng bộ trực thuộc Đảng bộ xã Võ Lao.">
 <meta property="og:url" content="https://laocai-cds.github.io/volao/">
-<meta property="og:image" content="https://laocai-cds.github.io/volao/og-image-volao.png">
-<meta property="og:image:secure_url" content="https://laocai-cds.github.io/volao/og-image-volao.png">
-<meta property="og:image:type" content="image/png">
+<meta property="og:image" content="https://laocai-cds.github.io/volao/og-image-volao-v2.jpg">
+<meta property="og:image:secure_url" content="https://laocai-cds.github.io/volao/og-image-volao-v2.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:alt" content="Đảng bộ xã Võ Lao · Hệ thống theo dõi thu nộp đảng phí">
 <meta property="og:image:width" content="1774">
 <meta property="og:image:height" content="887">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hệ thống theo dõi thu nộp đảng phí · Đảng bộ xã Võ Lao">
 <meta name="twitter:description" content="Theo dõi tiến độ thu nộp đảng phí của các chi bộ, đảng bộ trực thuộc Đảng bộ xã Võ Lao.">
-<meta name="twitter:image" content="https://laocai-cds.github.io/volao/og-image-volao.png">
+<meta name="twitter:image" content="https://laocai-cds.github.io/volao/og-image-volao-v2.jpg">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -655,7 +655,7 @@ body::before{display:none}
 @media(min-width:1024px){
   .bar .wrap{flex-direction:row;align-items:center;gap:24px;height:var(--barh);padding:8px 18px;max-width:none}
   .brand{flex:none}
-  .tabs{flex-direction:row;gap:2px;margin:0 auto;padding:4px;background:var(--giay);border:1px solid var(--rule);border-radius:12px}
+  .tabs{flex-direction:row;gap:2px;margin:0;padding:4px;background:var(--giay);border:1px solid var(--rule);border-radius:12px}
   .tabs::before{display:none}
   .tab{width:auto;gap:8px;padding:7px 16px;border-radius:9px;color:var(--muted);font-size:13.5px}
   .tab svg{width:17px;height:17px}
@@ -663,7 +663,7 @@ body::before{display:none}
   .tab[aria-current=page]{background:#fff;color:var(--son-d);box-shadow:0 1px 3px #0f172a1f;font-weight:700}
   .tab[aria-current=page]::before{display:none}
   .tab[aria-current=page] svg{color:var(--son)}
-  .barright{margin:0;flex-direction:row;gap:8px}
+  .barright{margin:0 0 0 auto;flex-direction:row;gap:8px;flex:none}
   .barright::before{display:none}
   .bar .btn{width:auto;padding:8px 14px;border-radius:9px}
 }
@@ -1017,7 +1017,7 @@ td{font-size:12px}
 .cr-office{font-size:16px;font-weight:800;letter-spacing:.02em;color:#8b1e2d;-webkit-text-fill-color:#8b1e2d;background:none}.copyr b{color:#8b1e2d}
 .cr-o,.copyr{color:#778292}
 .cr-ic{background:var(--son);box-shadow:none;border-color:#e4e7eb}
-@media(min-width:1024px){.bar .wrap{display:flex;flex-direction:row;align-items:center}.brand{flex:none}.tabs{margin:0 auto}.barright{margin:0;flex-direction:row;gap:8px}.bar .btn{width:auto}}
+@media(min-width:1024px){.bar .wrap{display:flex;flex-direction:row;align-items:center}.brand{flex:none}.tabs{margin:0 auto}.barright{margin:0 0 0 auto;flex-direction:row;gap:8px;flex:none}.bar .btn{width:auto}}
 @media(max-width:1280px){.notice{width:calc(100% - 52px)}}
 @media(max-width:1023px){
  .bar .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 12px;padding:10px 18px}
@@ -1164,6 +1164,20 @@ td{font-size:12px}
   .foot .copyr{font-size:10.5px}
 }
 
+/* CĂN CỤM NÚT TRÊN THANH ĐIỀU HƯỚNG GỌN HƠN */
+@media (min-width:1024px){
+  .bar .wrap{column-gap:10px!important}
+  .tabs{margin-left:8px!important;margin-right:8px!important;gap:3px!important}
+  .barright{gap:5px!important}
+  .bar .btn{padding:8px 10px!important;gap:7px!important}
+}
+
+/* Căn toàn bộ 5 nút điều hướng thành một cụm, dồn về bên phải và giữ khoảng cách đều */
+@media (min-width:1024px){
+  .bar .wrap{gap:10px!important;justify-content:flex-start!important}
+  .tabs{margin-left:auto!important;margin-right:0!important;gap:8px!important;flex:0 0 auto!important}
+  .barright{margin-left:0!important;margin-right:0!important;gap:8px!important;flex:0 0 auto!important}
+}
 </style>
 
 </head>
@@ -2172,3 +2186,6 @@ const FB_CFG={databaseURL:'https://volao-d4711-default-rtdb.firebaseio.com'};
 
 
 
+
+/* Căn nhóm nút báo cáo sát mép phải thanh điều hướng */
+@media(min-width:1024px){.bar .wrap{justify-content:flex-start}.tabs{margin-left:0;margin-right:0}.barright{margin-left:auto!important;margin-right:0!important;justify-content:flex-end}}
