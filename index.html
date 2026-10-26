@@ -1210,6 +1210,44 @@ td{font-size:12px}
 .bar #helpBtn:active{transform:translateY(0)}
 .bar #helpBtn:focus-visible{outline:2px solid #8c0f16!important;outline-offset:2px}
 
+
+/* Hover chuyên nghiệp cho các thẻ thống kê */
+.stat{
+  isolation:isolate;
+  border-color:#e1e5eb;
+  transition:transform .24s cubic-bezier(.2,.75,.25,1),box-shadow .24s ease,border-color .24s ease,background-color .24s ease
+}
+.stat::before{
+  content:'';
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  pointer-events:none;
+  opacity:0;
+  background:radial-gradient(360px circle at var(--hover-x,50%) var(--hover-y,0%),color-mix(in srgb,var(--k) 11%,transparent),transparent 72%);
+  transition:opacity .24s ease
+}
+.stat::after{height:3px;transform:scaleX(.48);transform-origin:left;transition:transform .28s cubic-bezier(.2,.75,.25,1),height .2s ease}
+.stat .ico{transition:transform .24s cubic-bezier(.2,.75,.25,1),box-shadow .24s ease,background-color .24s ease}
+@media(hover:hover) and (pointer:fine){
+  .stat:hover{
+    transform:translateY(-5px);
+    border-color:color-mix(in srgb,var(--k) 38%,var(--rule));
+    box-shadow:0 1px 0 #fff inset,0 12px 28px -14px color-mix(in srgb,var(--k) 35%,transparent),0 18px 36px -24px #1c1d1f55
+  }
+  .stat:hover::before{opacity:1}
+  .stat:hover::after{transform:scaleX(1);height:4px}
+  .stat:hover .ico{transform:translateY(-2px) rotate(-4deg);box-shadow:0 7px 15px -7px color-mix(in srgb,var(--k) 65%,transparent)}
+}
+.stat:focus-within{
+  outline:2px solid color-mix(in srgb,var(--k) 55%,white);
+  outline-offset:3px
+}
+@media(prefers-reduced-motion:reduce){
+  .stat,.stat::before,.stat::after,.stat .ico{transition:none}
+  .stat:hover{transform:none}
+}
+
 </style>
 
 </head>
