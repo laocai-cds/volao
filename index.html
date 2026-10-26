@@ -2483,7 +2483,7 @@ const FB_CFG={databaseURL:'https://volao-d4711-default-rtdb.firebaseio.com'};
 <script>
 (()=>{
   /* Đặt sau các biểu đồ (Tiến độ theo đơn vị), trước bảng chi tiết dài; không có thì đặt sau hàng thẻ số liệu. */
-  const anchor=document.querySelector('#tien-do')||document.querySelector('.kpis');
+  const anchor=document.querySelector('.kpis')||document.querySelector('#tien-do');
   if(!anchor||document.querySelector('#unit-news'))return;
   /* Dữ liệu tin do GitHub Actions gom mỗi 30 phút (news/pool.json). Trang con có thể đặt
      window.RSS_POOL='https://laocai-cds.github.io/mau/news/pool.json' để dùng chung; window.RSS_UNIT để ghi đè tên đơn vị. */
@@ -2578,7 +2578,7 @@ const FB_CFG={databaseURL:'https://volao-d4711-default-rtdb.firebaseio.com'};
     box.setAttribute('aria-busy','true');btn.disabled=true;sub.textContent='Đang tải tin…';skeleton();
     try{
       const d=await getPool();
-      const items=d.items.filter(i=>/^https?:\/\//i.test(i.url||'')&&(mentions((i.title||'')+' '+((i.desc||'').split(/(?<=[.!?…])\s+/)[0]||'').slice(0,220),cur)||(bare(cur)&&mentions(i.title||'',bare(cur))))).sort((a,b)=>(Date.parse(b.published)||0)-(Date.parse(a.published)||0)).slice(0,30);
+      const items=d.items.filter(i=>/^https?:\/\//i.test(i.url||'')&&((i.us||[]).includes(cur)||mentions((i.title||'')+' '+((i.desc||'').split(/(?<=[.!?…])\s+/)[0]||'').slice(0,220),cur)||(bare(cur)&&mentions(i.title||'',bare(cur))))).sort((a,b)=>(Date.parse(b.published)||0)-(Date.parse(a.published)||0)).slice(0,30);
       const t=d.updatedAt?new Date(d.updatedAt).toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'}):'';
       const part=d.partial?' · một số nguồn chưa tải được':'';
       if(!items.length){
