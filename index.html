@@ -1248,6 +1248,120 @@ td{font-size:12px}
   .stat:hover{transform:none}
 }
 
+
+/* ===== Hoàn thiện giao diện bảng điều hành ===== */
+:root{
+  --ui-surface:#fff;
+  --ui-canvas:#f4f6f8;
+  --ui-border:#e2e7ed;
+  --ui-shadow:0 1px 2px #17203308,0 12px 28px -22px #17203335
+}
+body{background:var(--ui-canvas)}
+.panel,.dpanel,.stat,.tablepanel{
+  border-color:var(--ui-border);
+  box-shadow:var(--ui-shadow)
+}
+.panel,.dpanel{border-radius:16px}
+.pagehead{border-bottom-color:#dfe4ea}
+.pagehead h1,.h2{letter-spacing:-.025em}
+.stat{
+  min-height:142px;
+  padding:20px 22px 19px;
+  border-radius:16px;
+  box-shadow:0 1px 2px #17203308,0 10px 24px -20px #17203338
+}
+.stat span{font-size:11px;letter-spacing:.075em}
+.stat strong{font-size:clamp(1.45rem,2vw,1.9rem);letter-spacing:-.025em}
+.stat .ico{width:40px;height:40px;border-radius:12px;box-shadow:0 4px 10px color-mix(in srgb,var(--k) 18%,transparent)}
+/* Hộp thoại thẻ đơn vị */
+#cbModal .cbm{
+  width:min(560px,calc(100vw - 32px));
+  max-height:min(90vh,800px);
+  max-height:min(90svh,800px);
+  overflow:auto;
+  overscroll-behavior:contain;
+  border:1px solid #e5e9ef;
+  border-radius:20px;
+  box-shadow:0 28px 90px #10182845;
+  scrollbar-width:thin
+}
+#cbModal .cbm-head{
+  padding:22px 60px 20px 24px;
+  background:linear-gradient(120deg,#8c0f16 0%,#a91620 62%,#751017 100%);
+  border-bottom:3px solid #d7b453
+}
+#cbModal .cbm-head h3{
+  color:#fff!important;
+  font:700 clamp(1.2rem,2.4vw,1.5rem)/1.3 var(--sans)!important;
+  letter-spacing:-.02em;
+  overflow-wrap:anywhere
+}
+#cbModal .cbm-head small{color:#ffe9a3}
+#cbModal .cbm-x{
+  right:14px;top:14px;width:36px;height:36px;
+  background:#ffffff1c;border:1px solid #ffffff55;
+  transition:background .18s ease,transform .18s ease
+}
+#cbModal .cbm-x:hover{background:#ffffff32;transform:rotate(90deg)}
+#cbModal .cbm-body{padding:22px 24px 24px}
+#cbModal .cbm-top{align-items:center}
+#cbModal .cbm-top strong{
+  font:800 clamp(2.25rem,6vw,3rem)/1 var(--sans);
+  letter-spacing:-.045em
+}
+#cbModal .cbm-rank{margin:8px 0 0;line-height:1.55}
+#cbModal .cbm .track{height:9px;margin:16px 0 18px;border-radius:99px;background:#e9edf2}
+#cbModal .cbm .track i{border-radius:99px}
+#cbModal .cbm-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#cbModal .cbm-grid>div{
+  min-height:68px;padding:12px 14px;
+  border:1px solid #e5e9ef;border-radius:12px;
+  background:linear-gradient(145deg,#f8fafc,#f1f4f7);
+  transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease
+}
+#cbModal .cbm-grid>div:hover{transform:translateY(-2px);border-color:#cbd5e1;box-shadow:0 6px 14px -12px #17203366}
+#cbModal .cbm-grid small{font-size:11.5px;line-height:1.4}
+#cbModal .cbm-grid b{display:block;margin-top:4px;font:700 1.12rem/1.25 var(--sans);letter-spacing:-.015em;overflow-wrap:anywhere}
+#cbModal .cbm-grid .warn{background:#fff8ed;border-color:#f2d5a7}
+#cbModal .cbm-grid .warn b{color:#a4510b}
+#cbModal .cbm-msgh{
+  margin:20px 0 8px;
+  color:#475569;font-size:11px;line-height:1.5;
+  letter-spacing:.075em
+}
+#cbModal .cbm-msg{
+  min-height:112px;padding:12px 14px;
+  border-color:#dbe2ea;border-radius:12px;
+  background:#fbfcfd;line-height:1.6
+}
+#cbModal .cbm-msg:focus{background:#fff;border-color:#9aa9bc;box-shadow:0 0 0 3px #33415512}
+#cbModal .cbm-acts{gap:10px;margin-top:18px}
+#cbModal .cbm-acts .btn{min-height:46px;border-radius:11px}
+#cbModal .cbm-acts .btn.solid{box-shadow:0 5px 12px -8px #8c0f1680}
+.tablepanel{border-radius:16px}
+.tablepanel thead th{position:sticky;top:0;z-index:2}
+tbody tr.row{transition:background-color .16s ease}
+tbody tr.row:hover{background:#f5f8fc}
+.btn{transition:transform .18s ease,background-color .18s ease,border-color .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+@media(max-width:600px){
+  .stat{min-height:126px;padding:15px 14px;border-radius:13px}
+  .stat strong{font-size:1.15rem}
+  #cbModal .cbm{width:calc(100vw - 20px);max-height:92vh;max-height:92svh;border-radius:17px}
+  #cbModal .cbm-head{padding:18px 54px 17px 18px}
+  #cbModal .cbm-body{padding:18px}
+  #cbModal .cbm-grid{gap:8px}
+  #cbModal .cbm-grid>div{min-height:64px;padding:10px 11px}
+  #cbModal .cbm-grid b{font-size:1rem}
+  #cbModal .cbm-acts{flex-direction:column}
+  #cbModal .cbm-acts .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  #cbModal .cbm-x,#cbModal .cbm-grid>div,.btn,tbody tr.row{transition:none}
+  #cbModal .cbm-x:hover,#cbModal .cbm-grid>div:hover,.btn:hover{transform:none}
+}
+
 </style>
 
 </head>
