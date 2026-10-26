@@ -1362,6 +1362,38 @@ tbody tr.row:hover{background:#f5f8fc}
   #cbModal .cbm-x:hover,#cbModal .cbm-grid>div:hover,.btn:hover{transform:none}
 }
 
+
+/* Hộp thoại chi tiết đơn vị gọn, vừa khung nhìn */
+#cbModal .cbm{
+  width:min(660px,calc(100vw - 36px));
+  max-height:calc(100svh - 36px);
+  overflow:auto
+}
+#cbModal .cbm-head{padding:16px 58px 15px 20px}
+#cbModal .cbm-body{padding:16px 20px 18px}
+#cbModal .cbm-top strong{font-size:clamp(2rem,4vw,2.6rem)}
+#cbModal .cbm-rank{margin:5px 0 0}
+#cbModal .cbm .track{margin:11px 0 13px}
+#cbModal .cbm-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#cbModal .cbm-grid>div{min-height:60px;padding:9px 11px}
+#cbModal .cbm-grid small{font-size:10.5px}
+#cbModal .cbm-grid b{font-size:1rem;margin-top:3px}
+#cbModal .cbm-msgh{margin:14px 0 6px;font-size:10.5px}
+#cbModal .cbm-msg{height:76px;min-height:76px;max-height:76px;padding:9px 12px;line-height:1.45}
+#cbModal .cbm-acts{margin-top:12px}
+#cbModal .cbm-acts .btn{min-height:42px;padding:8px 11px}
+@media(min-width:700px) and (min-height:700px){
+  #cbModal .cbm{overflow:hidden}
+}
+@media(max-width:600px){
+  #cbModal .cbm{width:calc(100vw - 20px);max-height:calc(100svh - 20px);overflow:auto}
+  #cbModal .cbm-head{padding:15px 52px 14px 16px}
+  #cbModal .cbm-body{padding:14px 16px 16px}
+  #cbModal .cbm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #cbModal .cbm-grid>div{min-height:56px}
+  #cbModal .cbm-msg{height:72px;min-height:72px;max-height:72px}
+}
+
 </style>
 
 </head>
