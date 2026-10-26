@@ -1178,6 +1178,18 @@ td{font-size:12px}
   .tabs{margin-left:auto!important;margin-right:0!important;gap:8px!important;flex:0 0 auto!important}
   .barright{margin-left:0!important;margin-right:0!important;gap:8px!important;flex:0 0 auto!important}
 }
+.guide-modal{width:min(760px,calc(100vw - 32px));max-height:min(88vh,760px);overflow:auto}
+.guide-lead{margin:0 0 14px!important;color:var(--muted);font-size:13px;line-height:1.6}
+.guide-section{padding:13px 0;border-top:1px solid var(--rule)}
+.guide-section h4{margin:0 0 6px;color:var(--son-d);font:700 14px/1.35 var(--sans)}
+.guide-section p,.guide-section li{color:var(--ink-2);font-size:12.5px;line-height:1.6}
+.guide-section p{margin:0}
+.guide-section ul{margin:5px 0 0;padding-left:20px}
+.guide-section li+li{margin-top:4px}
+.guide-safe{margin-top:12px;padding:11px 13px;border-radius:9px;background:var(--vang-bg);color:#6b4e00;font-size:12px;line-height:1.5}
+.guide-modal .macts{margin-top:14px}
+@media(max-width:1023px){.bar .btn#helpBtn{background:#f4f6f8;color:var(--son-d);border-color:var(--rule)}}
+
 </style>
 
 </head>
@@ -1197,6 +1209,10 @@ td{font-size:12px}
     <div class="barright">
       <button class="btn" id="reportBtn" title="Tạo báo cáo (In/PDF, Excel, Word)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg><span class="lbl">Tạo báo cáo</span></button>
       <button class="btn" id="exportBtn" title="Xuất báo cáo CSV"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg><span class="lbl">Xuất CSV</span></button>
+      <button class="btn" id="helpBtn" type="button" title="Hướng dẫn sử dụng" aria-haspopup="dialog" aria-controls="helpDialog">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.2 1.8c-1.2 1-1.8 1.4-1.8 2.7"/><path d="M12 17h.01"/></svg>
+        <span class="lbl">Hướng dẫn</span>
+      </button>
     </div>
   </div>
 </header>
@@ -1380,6 +1396,32 @@ td{font-size:12px}
 </main>
 
 <footer class="foot"><div class="wrap"><div class="credit"><span class="cr-ic" aria-hidden="true">★</span><div class="cr-t"><span class="cr-k">Thiết kế và phát triển</span><b class="cr-name">Trần Hiền</b><span class="cr-o">Văn phòng Đảng ủy xã Võ Lao</span></div></div><p class="copyr"><span aria-hidden="true">©</span> Bản quyền 2026: <b>Đảng ủy xã Võ Lao</b></p></div></footer>
+
+<div class="back" id="helpDialog" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+  <div class="modal guide-modal">
+    <h3 id="helpTitle">Hướng dẫn sử dụng</h3>
+    <p class="guide-lead">Các thao tác thường dùng trên Hệ thống theo dõi thu nộp đảng phí của Đảng bộ xã Võ Lao.</p>
+    <section class="guide-section">
+      <h4>Xem tổng quan và tra cứu đơn vị</h4>
+      <p>Chọn “Tổng quan” để xem tình hình chung và các đơn vị cần theo dõi. Dùng ô tìm kiếm hoặc bộ lọc để tìm đơn vị; bấm tên đơn vị trong bảng để xem chi tiết.</p>
+    </section>
+    <section class="guide-section">
+      <h4>Nhập dữ liệu và đồng bộ</h4>
+      <ul>
+        <li>Mở “Nhập dữ liệu”, chọn tệp .xlsx, .xls hoặc .csv rồi kiểm tra bản xem trước.</li>
+        <li>Chọn đúng tháng của dữ liệu trước khi bấm “Đồng bộ lên Google Sheet”.</li>
+        <li>Đọc kỹ hộp xác nhận: dữ liệu tháng hiện tại có thể thay thế nội dung trang tính đích.</li>
+        <li>Chỉ coi là hoàn tất khi website xác nhận đã đọc lại dữ liệu; kiểm tra Nhật ký đồng bộ và tab tháng trong Google Sheet.</li>
+      </ul>
+    </section>
+    <section class="guide-section">
+      <h4>Tạo báo cáo và xuất dữ liệu</h4>
+      <p>Chọn “Tạo báo cáo”, chọn kỳ báo cáo rồi chọn In/Lưu PDF, Word hoặc Excel. Nút “Xuất CSV” tải bảng số liệu tổng hợp để mở bằng Excel hoặc phần mềm bảng tính.</p>
+    </section>
+    <div class="guide-safe"><b>Lưu ý:</b> Kiểm tra đúng tệp, tháng và bảng tính đích trước khi gửi. Không chia sẻ công khai URL Web App hoặc mã đồng bộ.</div>
+    <div class="macts"><button class="btn solid" id="helpClose" type="button">Đã hiểu</button></div>
+  </div>
+</div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="back" id="ntModal" role="dialog" aria-modal="true" aria-labelledby="ntTitle">
@@ -2000,6 +2042,12 @@ $('#ntSave').onclick=async()=>{const msg=$('#ntInput').value.trim();if(!msg){$('
 };
 ntApply();window.addEventListener('resize',ntApply,{passive:true});setTimeout(ntLoad,1500);
 $('#reportBtn').onclick=openReportDialog;
+const helpDialog=$('#helpDialog');
+function closeHelpDialog(){helpDialog.classList.remove('on');$('#helpBtn').focus()}
+$('#helpBtn').onclick=()=>{helpDialog.classList.add('on');$('#helpClose').focus()};
+$('#helpClose').onclick=closeHelpDialog;
+helpDialog.addEventListener('click',e=>{if(e.target===helpDialog)closeHelpDialog()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&helpDialog.classList.contains('on'))closeHelpDialog()});
 $('#exportBtn').onclick=()=>{
   const rows=[['Đơn vị','Tổng đảng viên','Miễn giảm','Phải nộp','Đã nộp (đảng viên)','Chưa duyệt','Chưa có hồ sơ','Tổng kê khai','Tiền đã nộp','Tỷ lệ đảng viên đã nộp'],...units.map(r=>[nm(r),v(r,'members'),v(r,'exempt'),v(r,'due'),v(r,'paidCount'),v(r,'pending'),v(r,'noRecord'),v(r,'declared'),v(r,'paid'),v(r,'progress')])];
   const csv='﻿'+rows.map(r=>r.map(x=>'"'+String(x).replaceAll('"','""')+'"').join(',')).join('\r\n');
