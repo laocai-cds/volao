@@ -1425,10 +1425,6 @@ tbody tr.row:hover{background:#f5f8fc}
       <button class="btn" id="reportBtn" title="Tạo báo cáo (In/PDF, Excel, Word)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg><span class="lbl">Tạo báo cáo</span></button>
       <button class="btn" id="exportBtn" title="Xuất báo cáo CSV"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg><span class="lbl">Xuất CSV</span></button>
       <button class="btn" id="mktBtn" type="button" aria-haspopup="dialog" title="Xem bản tin thị trường: tỷ giá USD và giá vàng"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg><span class="lbl">Bản tin thị trường</span></button>
-      <button class="btn" id="helpBtn" type="button" title="Hướng dẫn sử dụng" aria-haspopup="dialog" aria-controls="helpDialog">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.2 1.8c-1.2 1-1.8 1.4-1.8 2.7"/><path d="M12 17h.01"/></svg>
-        <span class="lbl">Hướng dẫn</span>
-      </button>
     </div>
   </div>
 </header>
@@ -2272,8 +2268,8 @@ $('#ntSave').onclick=async()=>{const msg=$('#ntInput').value.trim();if(!msg){$('
 ntApply();window.addEventListener('resize',ntApply,{passive:true});setTimeout(ntLoad,1500);
 $('#reportBtn').onclick=openReportDialog;
 const helpDialog=$('#helpDialog');
-function closeHelpDialog(){helpDialog.classList.remove('on');$('#helpBtn').focus()}
-$('#helpBtn').onclick=()=>{helpDialog.classList.add('on');$('#helpClose').focus()};
+function closeHelpDialog(){helpDialog.classList.remove('on');var hb=$('#helpBtn');if(hb)hb.focus()}
+if($('#helpBtn'))$('#helpBtn').onclick=()=>{helpDialog.classList.add('on');$('#helpClose').focus()};
 $('#helpClose').onclick=closeHelpDialog;
 helpDialog.addEventListener('click',e=>{if(e.target===helpDialog)closeHelpDialog()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&helpDialog.classList.contains('on'))closeHelpDialog()});
@@ -2787,6 +2783,18 @@ document.addEventListener('keydown',function(e){const o=ov();if(e.key==='Escape'
 .pf-bar b{color:var(--son-d,#8c0f16)}
 @media(max-width:760px){.pf-grid{grid-template-columns:1fr;gap:22px;padding:24px 0 18px}.pf-in{padding:0 18px}.pf-bar{flex-direction:column;gap:4px}}
 @media print{.foot.pf{display:none}}
+</style>
+<style>
+@media(min-width:1024px){
+.bar .wrap{gap:10px!important}
+.bar .tabs{margin:0 0 0 auto!important;flex:none;gap:4px!important}
+.bar .tabs .tab{height:32px!important;padding:0 11px!important;font-size:12.5px!important;gap:6px!important;border-radius:9px!important}
+.bar .tabs .tab svg{width:15px!important;height:15px!important}
+.bar .barright{margin:0 0 0 6px!important;gap:6px!important}
+.bar .barright .btn,.bar .barright .btn:hover{height:32px!important;padding:0 11px!important;font-size:12.5px!important;gap:6px!important;border-radius:9px!important}
+.bar .barright .btn svg{width:15px!important;height:15px!important}
+.bar .brand b{font-size:17px}
+}
 </style>
 </body>
 </html>
