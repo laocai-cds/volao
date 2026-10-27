@@ -1611,7 +1611,14 @@ tbody tr.row:hover{background:#f5f8fc}
 </section>
 </main>
 
-<footer class="foot"><div class="wrap"><div class="credit"><span class="cr-ic" aria-hidden="true">★</span><div class="cr-t"><span class="cr-k">Thiết kế và phát triển</span><b class="cr-name">Trần Hiền</b><span class="cr-o">Văn phòng Đảng ủy xã Võ Lao</span></div></div><p class="copyr"><span aria-hidden="true">©</span> Bản quyền 2026: <b>Đảng ủy xã Võ Lao</b></p></div></footer>
+<footer class="foot pf"><div class="wrap pf-in">
+  <div class="pf-grid">
+    <div class="pf-brand"><img src="logo.png" alt="" width="46" height="46" decoding="async"><div><b>ĐẢNG BỘ XÃ VÕ LAO</b><span>Theo dõi thu nộp đảng phí</span></div></div>
+    <nav class="pf-nav" aria-label="Liên kết nhanh"><h4>Chuyên mục</h4><a href="#overview">Tổng quan</a><a href="#units">Đơn vị trực thuộc</a><a href="#import">Nhập dữ liệu</a></nav>
+    <div class="pf-credit"><h4>Thiết kế và phát triển</h4><b>Trần Hiền</b><span>Văn phòng Đảng ủy xã Võ Lao</span></div>
+  </div>
+  <div class="pf-bar"><span><span aria-hidden="true">©</span> Bản quyền 2026: <b>Đảng ủy xã Võ Lao</b></span><span class="pf-sub">Số liệu đồng bộ từ Google Sheet</span></div>
+</div></footer>
 
 <div class="back" id="helpDialog" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
   <div class="modal guide-modal">
@@ -2760,6 +2767,26 @@ document.addEventListener('click',function(e){const t=e.target;if(!t||!t.closest
 document.addEventListener('keydown',function(e){const o=ov();if(e.key==='Escape'&&o&&o.classList.contains('on'))closeMkt()});
 })();
 </script>
+<style>
+.foot.pf{margin-top:34px;padding:0!important;background:linear-gradient(180deg,#8c0f16,#650a10)!important;border-top:3px solid #c9a227!important;color:#f6e9e0;text-align:left}
+.foot.pf .pf-in{display:block!important;width:100%!important;max-width:1180px!important;margin:0 auto!important;padding:0 24px!important;box-sizing:border-box}
+.foot.pf .pf-grid,.foot.pf .pf-bar{width:100%;box-sizing:border-box}
+.pf-grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:32px;padding:30px 0 24px;align-items:start}
+.pf-brand{display:flex;align-items:center;gap:14px}
+.pf-brand img{width:46px;height:46px;object-fit:contain;border-radius:8px;background:#fff;padding:3px;flex:none}
+.pf-brand b{display:block;font-size:15px;letter-spacing:.04em;color:#ffe08a}
+.pf-brand span{display:block;margin-top:3px;font-size:12.5px;color:#f1d9cf}
+.pf h4{margin:0 0 10px;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#e9cf7a}
+.pf-nav{display:flex;flex-direction:column;gap:6px}
+.pf-nav a{color:#fbeee8;font-size:13px;text-decoration:none;width:max-content;border-bottom:1px solid transparent}
+.pf-nav a:hover{color:#fff;border-bottom-color:#e9cf7a}
+.pf-credit b{display:block;font-size:16px;color:#fff}
+.pf-credit span{display:block;margin-top:3px;font-size:12.5px;color:#f1d9cf}
+.pf-bar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px 0 18px;border-top:1px solid #ffffff2b;font-size:12px;color:#e8cfc4}
+.pf-bar b{color:#ffe08a}
+@media(max-width:760px){.pf-grid{grid-template-columns:1fr;gap:22px;padding:24px 0 18px}.pf-in{padding:0 18px}.pf-bar{flex-direction:column;gap:4px}}
+@media print{.foot.pf{display:none}}
+</style>
 </body>
 </html>
 
