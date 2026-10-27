@@ -1694,24 +1694,30 @@ function sheetEndpoint(){let e='';try{e=localStorage.getItem('volao_endpoint')||
 function jsonp(url,ms){return new Promise((res,rej)=>{const cb='__volao_'+Date.now()+Math.random().toString(36).slice(2),sc=document.createElement('script');let ok=false;
   const fin=(e,v)=>{clearTimeout(tm);delete window[cb];sc.remove();e?rej(e):res(v)};const tm=setTimeout(()=>fin(new Error('timeout')),ms||8000);
   window[cb]=d=>{ok=true;fin(null,d)};sc.onerror=()=>fin(new Error('load'));sc.src=url+(url.includes('?')?'&':'?')+'callback='+cb+'&t='+Date.now();document.head.appendChild(sc)})}
-async function postAndVerify(ep,payload,timeoutMs=18000){
+async function postAndVerify(ep,payload,timeoutMs=30000,onStage){
   const requestId='volao-'+Date.now()+'-'+Math.random().toString(36).slice(2,10);
   const body={...payload,requestId};
   const tab=String(body.tab||'Dữ liệu nhập');
   const expectedRows=Array.isArray(body.rows)?body.rows.length:0;
-  await fetch(ep,{method:'POST',mode:'no-cors',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});
+  const t0=performance.now();let tSent=null,postErr=null;
+  // Gửi không chờ phản hồi để bắt đầu xác nhận ngay: Apps Script ghi xong dữ liệu là đã báo requestId, trước cả khi định dạng/nhật ký xong.
+  fetch(ep,{method:'POST',mode:'no-cors',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)}).then(()=>{tSent=performance.now()-t0;if(onStage)try{onStage('sent')}catch(_){}},e=>{postErr=e});
   const until=Date.now()+timeoutMs;let last='';
-  while(Date.now()<until){
-    await new Promise(r=>setTimeout(r,1500));
-    try{const d=await jsonp(ep+'?action=read&tab='+encodeURIComponent(tab),7000);
+  // Hỏi lại mỗi 1 giây (tối đa 3 lần cùng lúc), lần nào thấy requestId khớp trước thì dùng.
+  return await new Promise((resolve,reject)=>{let done=false,inflight=0;
+    const finish=(fn,v)=>{if(done)return;done=true;clearInterval(iv);fn(v)};
+    const fire=()=>{inflight++;jsonp(ep+'?action=read&tab='+encodeURIComponent(tab),7000).then(d=>{if(done)return;
       if(d&&d.ok&&d.lastWrite&&d.lastWrite.requestId===requestId&&d.lastWrite.tab===tab){
         const count=Array.isArray(d.rows)?d.rows.length:0;
-        if(count===expectedRows)return {ok:true,requestId,tab,rows:count,lastSync:d.lastSync};
-        last='Yêu cầu đã ghi nhưng số dòng đọc lại không khớp.';
+        if(count===expectedRows)finish(resolve,{ok:true,requestId,tab,rows:count,lastSync:d.lastSync,data:d,ms:performance.now()-t0,sentMs:tSent});
+        else last='Yêu cầu đã ghi nhưng số dòng đọc lại không khớp.';
       }else if(d&&!d.ok)last=d.message||'Không đọc được dữ liệu sau khi ghi.';
-    }catch(e){last='Chưa đọc được dữ liệu xác nhận từ Google Sheet.'}
-  }
-  throw new Error(last||'Hết thời gian chờ xác nhận. Dữ liệu chưa được xác minh; hãy kiểm tra Google Sheet trước khi gửi lại.');
+    }).catch(()=>{last='Chưa đọc được dữ liệu xác nhận từ Google Sheet.'}).finally(()=>{inflight--})};
+    const iv=setInterval(()=>{if(done)return;
+      if(postErr){finish(reject,postErr);return}
+      if(Date.now()>until){finish(reject,new Error(last||'Hết thời gian chờ xác nhận. Dữ liệu chưa được xác minh; hãy kiểm tra Google Sheet trước khi gửi lại.'));return}
+      if(inflight<3)fire()},1000);
+  });
 }
 const nkey=x=>String(x||'').toLocaleLowerCase('vi').replace(/[^\p{L}\p{N}]+/gu,'');
 let liveUnits=[],viewKey=null,msnap={};try{msnap=JSON.parse(localStorage.getItem('volao_msnap')||'{}')||{}}catch(_){}
@@ -2279,6 +2285,7 @@ function readExcel(file){
       const p=$('#preview');p.hidden=false;
       p.innerHTML=`<table><thead><tr>${pendingHeaders.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${pendingRows.slice(0,6).map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table><div class="hint" style="padding:8px 10px">${pendingRows.length>6?'Đang xem 6 dòng đầu. ':''}Dữ liệu trong tệp chỉ được gửi khi bạn chọn đồng bộ.</div>`;
       $('#syncBtn').disabled=!pendingRows.length;
+      try{const u=checkEndpoint();if(u&&pendingRows.length)fetch(u+'?warm='+Date.now(),{mode:'no-cors'}).catch(()=>{})}catch(_){} // làm nóng Apps Script trong lúc người dùng xem bản xem trước
       const hasName=pendingHeaders.some(h=>String(h).trim()===KEYS.name);
       if(!pendingRows.length)syncMsg('Tệp không có dòng dữ liệu.','bad');
       else if(!hasName)syncMsg(`Đã đọc ${pendingRows.length} dòng nhưng không thấy cột “${KEYS.name}”. Hãy dùng đúng tệp xuất từ hệ thống đảng phí.`,'bad');
@@ -2352,19 +2359,25 @@ $('#syncBtn').onclick=async()=>{
     else{syncMsg(`Đã lưu tạm trên thiết bị cho tháng ${mk.slice(5)}/${mk.slice(0,4)}, nhưng CHƯA XÁC NHẬN trên Google Sheet. Kiểm tra tab tháng trước khi coi là đã đồng bộ.`,'bad');toast('Số liệu tháng chưa được xác nhận trên Google Sheet.');}
     return}
   if(!confirm(`Gửi ${pendingRows.length} dòng Excel tới Google Sheet (tháng hiện tại)?\nDữ liệu sẽ thay thế nội dung trang tính đích.`))return;
-  const b=$('#syncBtn');b.disabled=true;b.textContent='Đang gửi…';syncMsg('Đang gửi dữ liệu tới Apps Script…');
+  const b=$('#syncBtn');b.disabled=true;
+  // Bộ đếm giây: chạy từ lúc bấm đến khi Google Sheet xác nhận.
+  const T0=performance.now(),sec=ms=>(ms/1000).toFixed(1).replace('.',',');
+  let stage='Đang gửi dữ liệu; chưa coi là thành công cho đến khi đọc lại xác nhận',btnTxt='Đang gửi';
+  const paint=()=>{const sx=sec(performance.now()-T0);b.textContent=`${btnTxt}… ${sx} s`;syncMsg(`⏱ ${sx} giây · ${stage}…`)};
+  paint();const tick=setInterval(paint,100);
   try{
     const headers=(()=>{const w=Math.max(pendingHeaders.length,...pendingRows.map(r=>r.length)),h=[...pendingHeaders];while(h.length<w)h.push('');return h})();
     const rows=normRows();
-    syncMsg('Đang gửi dữ liệu; chưa coi là thành công cho đến khi đọc lại xác nhận…');
-    await postAndVerify(url,{headers,rows,token,source:'website-tram-tau',sentAt:new Date().toISOString()});
-    const d=await jsonp(url+'?action=read',8000);const hit=applySheet(d);if(hit)dataSrc='sheet';render();if(hit)syncMonthly();setTimeout(loadLog,800);
+    const res=await postAndVerify(url,{headers,rows,token,source:'website-tram-tau',sentAt:new Date().toISOString()},30000,st=>{if(st==='sent'){stage='Đã gửi, đang chờ Google Sheet xác nhận';btnTxt='Đang xác nhận'}});
+    clearInterval(tick);const total=performance.now()-T0,det=`⏱ Hoàn tất sau ${sec(total)} giây${res.sentMs!=null?` (Apps Script xử lý xong sau ${sec(res.sentMs)} giây)`:' (Apps Script còn hoàn tất định dạng và nhật ký)'}.`;
+    const d=res.data;const hit=applySheet(d);if(hit)dataSrc='sheet';render();if(hit)syncMonthly();setTimeout(loadLog,800);
     if(!hit)throw new Error('Đã ghi nhận yêu cầu nhưng dữ liệu đọc lại chưa khớp danh sách đơn vị. Kiểm tra tab Dữ liệu nhập.');
-    syncMsg(`Đã xác nhận đồng bộ ${rows.length} dòng lên tab “Dữ liệu nhập” và cập nhật bảng điều khiển (${hit}/${INITIAL_UNITS.length} đơn vị khớp).`,'ok');toast('Google Sheet đã xác nhận đồng bộ thành công.');showSheetLink();
+    syncMsg(`Đã xác nhận đồng bộ ${rows.length} dòng lên tab “Dữ liệu nhập” và cập nhật bảng điều khiển (${hit}/${INITIAL_UNITS.length} đơn vị khớp). ${det}`,'ok');toast(`Google Sheet đã xác nhận đồng bộ trong ${sec(total)} giây.`);showSheetLink();
     setTimeout(()=>syncTable(true).then(()=>loadLog()),400);
   }catch(e){
+    clearInterval(tick);
     syncMsg('CHƯA XÁC NHẬN LƯU: '+(e&&e.message?e.message:'lỗi mạng hoặc Web App').replace(/[<>]/g,'' )+'. Không gửi lại ngay; hãy mở Google Sheet kiểm tra tab đích trước.','bad');toast('Chưa xác nhận được dữ liệu đã lưu.');setTimeout(loadLog,500);
-  }finally{b.disabled=!pendingRows.length;b.textContent='Đồng bộ lên Google Sheet'}
+  }finally{clearInterval(tick);b.disabled=!pendingRows.length;b.textContent='Đồng bộ lên Google Sheet'}
 };
 try{if(/zalo/i.test(navigator.userAgent)&&!sessionStorage.getItem('zalo_ok')){const zb=document.getElementById('zalobar');zb.classList.add('on');document.getElementById('zalook').onclick=()=>{zb.classList.remove('on');try{sessionStorage.setItem('zalo_ok','1')}catch(e){}}}}catch(e){}
 start();startLoop();checkEndpoint();showSheetLink();
