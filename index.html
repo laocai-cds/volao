@@ -2372,7 +2372,7 @@ $('#syncBtn').onclick=async()=>{
     clearInterval(tick);const total=performance.now()-T0,det=`⏱ Hoàn tất sau ${sec(total)} giây${res.sentMs!=null?` (Apps Script xử lý xong sau ${sec(res.sentMs)} giây)`:' (Apps Script còn hoàn tất định dạng và nhật ký)'}.`;
     const d=res.data;const hit=applySheet(d);if(hit)dataSrc='sheet';render();if(hit)syncMonthly();setTimeout(loadLog,800);
     if(!hit)throw new Error('Đã ghi nhận yêu cầu nhưng dữ liệu đọc lại chưa khớp danh sách đơn vị. Kiểm tra tab Dữ liệu nhập.');
-    syncMsg(`Đã xác nhận đồng bộ ${rows.length} dòng lên tab “Dữ liệu nhập” và cập nhật bảng điều khiển (${hit}/${INITIAL_UNITS.length} đơn vị khớp). ${det}`,'ok');toast(`Google Sheet đã xác nhận đồng bộ trong ${sec(total)} giây.`);showSheetLink();
+    syncMsg(`Đã xác nhận đồng bộ ${rows.length} dòng lên tab “Dữ liệu nhập” và cập nhật bảng điều khiển (${INITIAL_UNITS.length?`${hit}/${INITIAL_UNITS.length} đơn vị khớp`:`${hit} đơn vị`}). ${det}`,'ok');toast(`Google Sheet đã xác nhận đồng bộ trong ${sec(total)} giây.`);showSheetLink();
     setTimeout(()=>syncTable(true).then(()=>loadLog()),400);
   }catch(e){
     clearInterval(tick);
