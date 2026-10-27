@@ -1424,6 +1424,7 @@ tbody tr.row:hover{background:#f5f8fc}
     <div class="barright">
       <button class="btn" id="reportBtn" title="Tạo báo cáo (In/PDF, Excel, Word)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg><span class="lbl">Tạo báo cáo</span></button>
       <button class="btn" id="exportBtn" title="Xuất báo cáo CSV"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg><span class="lbl">Xuất CSV</span></button>
+      <button class="btn" id="mktBtn" type="button" aria-haspopup="dialog" title="Xem bản tin thị trường: tỷ giá USD và giá vàng"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg><span class="lbl">Bản tin thị trường</span></button>
       <button class="btn" id="helpBtn" type="button" title="Hướng dẫn sử dụng" aria-haspopup="dialog" aria-controls="helpDialog">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.2 1.8c-1.2 1-1.8 1.4-1.8 2.7"/><path d="M12 17h.01"/></svg>
         <span class="lbl">Hướng dẫn</span>
@@ -2728,6 +2729,35 @@ const FB_CFG={databaseURL:'https://volao-d4711-default-rtdb.firebaseio.com'};
   }
   btn.title='Về '+cap(DEFAULT)+' (mặc định)';btn.setAttribute('aria-label',btn.title);
   btn.addEventListener('click',()=>{cur=DEFAULT;sel.value=DEFAULT;load()});load();setInterval(load,30*60*1000);
+})();
+</script>
+<style>.mkt-ov{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:#0b1220b8;backdrop-filter:blur(3px);padding:2.5vh 2vw}
+.mkt-ov.on{display:flex}
+.mkt-box{position:relative;width:min(1240px,100%);height:100%;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px -20px #000a}
+.mkt-box iframe{display:block;width:100%;height:100%;border:0;background:#fff}
+.mkt-x{position:absolute;top:12px;right:14px;z-index:2;width:34px;height:34px;border-radius:50%;border:1px solid #ffffff55;background:#0f1d33cc;color:#fff;font-size:18px;line-height:1;cursor:pointer}
+.mkt-x:hover{background:#c9a227;color:#3b2a05}
+@media(max-width:1023px){.mkt-ov{padding:0}.mkt-box{border-radius:0}}
+.bar .barright{display:flex;align-items:center;gap:8px}
+.bar .barright .btn,.bar .barright .btn:hover{box-sizing:border-box;height:36px;min-width:0;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:10px;font-size:13px;font-weight:600;line-height:1;white-space:nowrap;transform:none}
+.bar .barright #reportBtn,.bar .barright #exportBtn,.bar .barright #mktBtn,.bar .barright #helpBtn{background:#fff!important;background-image:none!important;border:1px solid #d8dee5!important;color:#2f3a46!important;box-shadow:0 1px 2px #0f172a0f!important;font-weight:600!important;filter:none!important;transition:background .15s,border-color .15s,box-shadow .15s}
+.bar .barright #reportBtn:hover,.bar .barright #exportBtn:hover,.bar .barright #mktBtn:hover,.bar .barright #helpBtn:hover{background:#f6f8fa!important;border-color:#b9c2cc!important;color:#111827!important;box-shadow:0 3px 8px -3px #0f172a33!important}
+.bar .barright .btn svg{flex:none;width:16px;height:16px}
+.bar .barright #reportBtn svg{color:#a8841a!important}.bar .barright #exportBtn svg{color:#2563eb!important}.bar .barright #mktBtn svg{color:#d97706!important}.bar .barright #helpBtn svg{color:#8c0f16!important}
+.bar .barright .btn:focus-visible{outline:2px solid #8c0f16;outline-offset:2px}
+@media(max-width:1023px){.bar .barright{gap:6px}.bar .barright .btn{width:36px;padding:0}.bar .barright .btn .lbl{display:none}}</style>
+<div class="mkt-ov" id="mktOv" role="dialog" aria-modal="true" aria-label="Bản tin thị trường"><div class="mkt-box"><button class="mkt-x" id="mktX" type="button" aria-label="Đóng">✕</button><iframe id="mktFr" title="Bản tin thị trường" loading="lazy"></iframe></div></div>
+<script>
+(function(){
+function ov(){return document.getElementById('mktOv')}
+function openMkt(){const o=ov(),f=document.getElementById('mktFr');if(!o)return;if(f&&!f.getAttribute('src'))f.src='bang-ty-gia-usd-gia-vang.html';o.classList.add('on');document.body.style.overflow='hidden'}
+function closeMkt(){const o=ov();if(o)o.classList.remove('on');document.body.style.overflow=''}
+window.openMkt=openMkt;window.closeMkt=closeMkt;
+document.addEventListener('click',function(e){const t=e.target;if(!t||!t.closest)return;
+ if(t.closest('#mktBtn')){e.preventDefault();e.stopPropagation();openMkt();return}
+ if(t.closest('#mktX')||t===ov()){closeMkt()}
+},true);
+document.addEventListener('keydown',function(e){const o=ov();if(e.key==='Escape'&&o&&o.classList.contains('on'))closeMkt()});
 })();
 </script>
 </body>
