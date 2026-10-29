@@ -1478,9 +1478,9 @@ go();document.addEventListener('DOMContentLoaded',go);
       <button class="tab admin-only" data-page="import"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8.3-8 9-4.8-.7-8-4.5-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span>Quản trị</span></button>
     </nav>
     <div class="barright">
-      <button class="btn" id="loginBtn" type="button" title="Đăng nhập quản trị bằng Gmail"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/></svg><span class="lbl" id="loginLbl">Đăng nhập</span></button>
       <button class="btn" id="reportBtn" title="Tạo báo cáo (In/PDF, Excel, Word)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg><span class="lbl">Tạo báo cáo</span></button>
       <button class="btn" id="exportBtn" title="Xuất báo cáo CSV"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg><span class="lbl">Xuất CSV</span></button>
+      <button class="btn" id="loginBtn" type="button" title="Đăng nhập quản trị bằng Gmail"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/></svg><span class="lbl" id="loginLbl">Đăng nhập</span></button>
       <button class="btn" id="mktBtn" type="button" aria-haspopup="dialog" title="Xem bản tin thị trường: tỷ giá USD và giá vàng"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg><span class="lbl">Bản tin thị trường</span></button>
     </div>
   </div>
@@ -3155,6 +3155,21 @@ document.addEventListener('keydown',function(e){const o=ov();if(e.key==='Escape'
 .bar .barright .btn svg{width:15px!important;height:15px!important}
 .bar .brand b{font-size:17px}
 }
+</style>
+<style id="barBtnColors">
+.bar .barright #reportBtn{background:#fff7dc!important;border:1px solid #e3be4f!important;color:#6b4e00!important}
+.bar .barright #reportBtn svg{color:#a8841a!important}
+.bar .barright #reportBtn:hover{background:#ffefb8!important;border-color:#c9a227!important}
+.bar .barright #exportBtn{background:#e8f1ff!important;border:1px solid #8fb4f3!important;color:#1d4ed8!important}
+.bar .barright #exportBtn svg{color:#1d4ed8!important}
+.bar .barright #exportBtn:hover{background:#d6e6ff!important;border-color:#5b8def!important}
+.bar .barright #loginBtn{background:#8c0f16!important;border:1px solid #8c0f16!important;color:#fff!important;font-weight:700!important;box-shadow:0 2px 6px -2px #8c0f1680!important;opacity:1!important}
+.bar .barright #loginBtn svg{color:#fff!important}
+.bar .barright #loginBtn:hover{background:#b3141c!important;border-color:#b3141c!important}
+.bar .barright #loginBtn:disabled{opacity:.7!important}
+.bar .barright #mktBtn{background:#fff1e0!important;border:1px solid #f0b06a!important;color:#9a4a00!important}
+.bar .barright #mktBtn svg{color:#d97706!important}
+.bar .barright #mktBtn:hover{background:#ffe4c2!important;border-color:#e08a2c!important}
 </style>
 </body>
 </html>
