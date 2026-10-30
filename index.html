@@ -744,6 +744,7 @@ body::before{display:none}
 .dbody{grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:18px}
 .dcenter strong{font:800 1.5rem/1 var(--sans);color:var(--ink)}
 .dcenter span{max-width:96px;font-size:11px}
+#donutpct{white-space:nowrap;font-size:1.28rem;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .dgroup div{font-size:12.5px}
 
 /* tiến trình + tiền */
@@ -1518,7 +1519,7 @@ go();document.addEventListener('DOMContentLoaded',go);
       <aside class="dpanel" aria-label="Biểu đồ tròn tình hình thu">
         <div class="dhead"><b>Tình hình thu toàn Đảng bộ</b><small>Vòng ngoài là đảng viên, vòng trong là đơn vị</small></div>
         <div class="dbody">
-          <div class="donut"><svg viewBox="0 0 220 220" id="donutsvg" role="img"></svg><div class="dcenter"><strong id="donutpct">0%</strong><span>đảng viên đã nộp đảng phí</span></div></div>
+          <div class="donut"><svg viewBox="0 0 220 220" id="donutsvg" role="img"></svg><div class="dcenter"><strong id="donutpct">0,00 %</strong><span>đảng viên đã nộp đảng phí</span></div></div>
           <div class="dlegend" id="dlegend"></div>
         </div>
       </aside>
@@ -1834,6 +1835,8 @@ const nf=new Intl.NumberFormat('vi-VN');
 const num=n=>nf.format(Math.round(n||0));
 const money=n=>num(n)+' ₫';
 const pct=n=>(Number(n||0)*100).toFixed(1).replace('.',',')+'%';
+/* Tỷ lệ ở vòng tròn: 2 chữ số thập phân, cắt bỏ (không làm tròn lên), ví dụ 99,81 % */
+const pct2=n=>{const x=Math.max(0,Number(n||0)*100),f=Math.floor(x*100+1e-7)/100;return f.toFixed(2).replace('.',',')+' %'};
 // Tỷ lệ = đảng viên đã nộp / (tổng đảng viên - miễn giảm - chuyển sinh hoạt tạm thời)
 /* đọc số theo cả kiểu Việt Nam (1.072.000 · 0,9862 · 98,6%) lẫn kiểu thường */
 const pnum=x=>{if(typeof x==='number')return isFinite(x)?x:0;const t=String(x==null?'':x).trim().replace('%','').replace(/\s/g,'');if(!t)return 0;
@@ -2141,7 +2144,7 @@ function render(){
 
   {
     $$('[data-c]').forEach(el=>countUp(el,Number(el.dataset.c),el.dataset.f==='money'?money:num));
-    lastRate=rate;countUp($('#donutpct'),rate,x=>pct(x));
+    lastRate=rate;countUp($('#donutpct'),rate,x=>pct2(x));
     growDonut();
     growBars('#overview');
   }
