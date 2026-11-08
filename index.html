@@ -4204,6 +4204,17 @@ html body #stats .stat.kp-hero.cardx{aspect-ratio:1.586/1;min-height:0!important
 #stats .cardx .cx-num small{opacity:.75!important}
 .cardx>.cx-sheen{opacity:.7}
 </style>
+<style id="cardStaticCss">/* Võ Lao: thẻ theo dõi đảng phí — chữ số kiểu thẻ ngân hàng, bỏ hiệu ứng */
+@font-face{font-family:'SoThe';src:url(so-the.woff2) format('woff2');font-display:swap}
+html body #stats .cardx .cx-num b,html body #stats .cardx .cx-valid b{font-family:'SoThe','Courier New',monospace!important;font-weight:400!important}
+html body #stats .cardx .cx-num b{font-size:34px!important;letter-spacing:.08em!important}
+html body #stats .stat.kp-hero,html body #stats .stat.kp-hero:hover,html body #stats .stat.kp-hero.tilting{transform:none!important;transition:none!important;will-change:auto!important;border-color:transparent!important;box-shadow:0 18px 36px -22px #17451acc!important;animation:none!important}
+html body #stats .stat.kp-hero::before{display:none!important}
+html body #stats .stat.kp-hero::after,html body #stats .stat.kp-hero:hover::after{height:4px!important;box-shadow:none!important;animation:none!important;transition:none!important}
+html body #stats .stat.kp-hero strong,html body #stats .stat.kp-hero:hover strong{transform:none!important}
+html body #stats .cardx .cx-holo{animation:none!important}
+@media(max-width:560px){html body #stats .cardx .cx-num b{font-size:22px!important;letter-spacing:.03em!important}}
+</style>
 <script src="xa-bar.js"></script>
 </body>
 </html>
