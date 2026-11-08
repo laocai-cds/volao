@@ -1556,7 +1556,7 @@ go();document.addEventListener('DOMContentLoaded',go);
   <div class="wrap">
     <div class="brand">
       <div class="seal"><img src="logo.png" alt="Cờ Đảng" width="40" height="40" decoding="async"></div>
-      <div><b>Đảng bộ xã Võ Lao</b><small>Theo dõi thu nộp đảng phí · Tỉnh Lào Cai</small></div>
+      <div><i class="bd-eb">Đảng Cộng sản Việt Nam</i><b>Đảng bộ xã Võ Lao</b><small>Hệ thống theo dõi thu nộp đảng phí<span class="bd-prov"> · Tỉnh Lào Cai</span></small></div>
       <div class="brand-date" id="brandDate" aria-label="Hôm nay"><small></small><b></b></div>
     </div>
     <nav class="tabs" aria-label="Chuyên mục">
@@ -4007,28 +4007,34 @@ document.addEventListener('keydown',function(e){var o=ov();if(e.key==='Escape'&&
 #overview .ovhead .lede b{color:#9b0c22;font-weight:800}
 @media(max-width:760px){#overview .ovhead h1{font-size:clamp(22px,6.5vw,32px)!important}#overview .ovhead .eyebrow{font-size:10px!important;letter-spacing:.08em!important}}
 </style>
-<style id="bannerCCss">/* Võ Lao: banner mẫu 3 — nền kem, dáng núi, tên chữ có chân đỏ – vàng */
-.bar .brand{position:relative;align-items:center!important;gap:16px!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1240 70' preserveAspectRatio='none'%3E%3Cpath d='M0 70L0 44C80 30 140 20 220 34C300 48 360 18 450 22C540 26 600 52 700 40C800 28 860 6 960 18C1060 30 1140 44 1240 30L1240 70Z' fill='%23f2c27a' fill-opacity='.38'/%3E%3Cpath d='M0 70L0 56C120 44 200 50 300 56C420 62 520 36 640 44C760 52 860 60 980 48C1080 38 1160 46 1240 50L1240 70Z' fill='%23c8102e' fill-opacity='.15'/%3E%3C/svg%3E") bottom/100% 64px no-repeat,linear-gradient(180deg,#fff8ef 0%,#fdebd8 100%)!important}
-.bar .seal{width:62px!important;height:62px!important;border-radius:15px!important;background:#fff!important;box-shadow:0 0 0 1px #ecd0b0,0 10px 20px -10px #8c0f16aa!important;flex:none}
-.bar .brand>div:nth-child(2){min-width:0}
-.bar .brand b{display:block!important;font-family:'Noto Serif',Georgia,serif!important;font-weight:700!important;font-size:clamp(20px,2.3vw,30px)!important;line-height:1.25!important;letter-spacing:.03em!important;text-transform:uppercase;padding:2px 0 3px!important;white-space:nowrap;background:linear-gradient(90deg,#7a0d14,#c8102e 55%,#d98a1a)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;filter:drop-shadow(0 1px 0 #fff)}
-.bar .brand small{display:flex!important;align-items:center;gap:10px;margin-top:2px!important;font-size:13px!important;font-weight:600!important;color:#7a5a3a!important;letter-spacing:0!important;text-transform:none!important}
-.bar .brand>div:nth-child(2)>small::before{content:'';flex:none;width:30px;height:2px;border-radius:2px;background:#c8102e}
-.brand-date{margin-left:auto;text-align:right;flex:none;position:relative}
-.brand-date small{display:block!important;font-size:12.5px!important;font-weight:500!important;color:#7a5a3a!important}
-.brand-date small::before{display:none}
-.bar .brand .brand-date b{font-family:var(--sans)!important;font-weight:800!important;font-size:clamp(17px,1.7vw,22px)!important;letter-spacing:-.01em!important;text-transform:none;padding:0!important;background:none!important;-webkit-text-fill-color:#8c0f16!important;color:#8c0f16!important;filter:none}
+<style id="bannerCCss">/* Võ Lao: banner trang trọng — nền ngà, hoa văn trống đồng mờ, chữ có chân đỏ đậm */
+.bar .brand{position:relative;align-items:center!important;gap:18px!important;overflow:hidden}
+.bar .seal{position:relative;z-index:1;flex:none;width:60px!important;height:60px!important;border-radius:14px!important;background:#fff!important;box-shadow:0 0 0 1px #e8d3a6,0 0 0 4px #fff,0 0 0 5px #e9c97a66,0 10px 22px -12px #6e0b11aa!important}
+.bar .brand>div:nth-child(2){position:relative;z-index:1;min-width:0;padding-left:18px;border-left:1px solid #e3c98f}
+.bd-eb{display:block;font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#a07a2c;margin-bottom:3px}
+.bar .brand b{display:block!important;font-family:'Noto Serif',Georgia,serif!important;font-weight:700!important;font-size:clamp(20px,2.1vw,27px)!important;line-height:1.2!important;letter-spacing:.045em!important;text-transform:uppercase;padding:0!important;margin:0!important;white-space:nowrap;background:none!important;-webkit-text-fill-color:#8c0f16!important;color:#8c0f16!important;filter:none!important;text-shadow:0 1px 0 #fff}
+.bar .brand small{display:block!important;margin-top:4px!important;font-size:13px!important;font-weight:500!important;color:#5f6670!important;letter-spacing:.01em!important;text-transform:none!important}
+.bar .brand small::before{display:none!important}
+.brand-date{position:relative;z-index:1;margin-left:auto;flex:none;display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:8px 16px 8px 12px;border-radius:14px;background:#ffffffcc;border:1px solid #eedcbb;box-shadow:0 6px 16px -12px #6e0b1166;text-align:left}
+.brand-date::before{content:'';grid-row:1/3;width:36px;height:36px;border-radius:11px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='5' width='17' height='15.5' rx='2.5'/%3E%3Cpath d='M3.5 10h17M8 3v4M16 3v4'/%3E%3C/svg%3E") center/18px no-repeat,linear-gradient(135deg,#c8102e,#8c0f16);box-shadow:0 4px 10px -4px #8c0f16aa}
+.bar .brand .brand-date small{display:block!important;margin:0!important;font-size:11.5px!important;font-weight:600!important;letter-spacing:.06em!important;text-transform:uppercase!important;color:#a07a2c!important}
+.bar .brand .brand-date b{font-family:var(--sans)!important;font-weight:800!important;font-size:18px!important;letter-spacing:0!important;text-transform:none;white-space:nowrap;-webkit-text-fill-color:#3b1d10!important;color:#3b1d10!important;text-shadow:none}
 @media(min-width:1024px){
 .bar .wrap{padding-top:0!important}
-.bar .brand{margin:0 -26px!important;padding:20px 28px 26px!important;width:calc(100% + 52px)!important;flex-basis:calc(100% + 52px)!important}
+.bar .brand{margin:0 -26px!important;padding:18px 28px 20px!important;width:calc(100% + 52px)!important;flex-basis:calc(100% + 52px)!important;
+ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' opacity='.16'%3E%3Cg fill='none' stroke='%23b8862b'%3E%3Ccircle cx='100' cy='100' r='97'/%3E%3Ccircle cx='100' cy='100' r='86' stroke-dasharray='1.5 3.5'/%3E%3Ccircle cx='100' cy='100' r='74'/%3E%3Ccircle cx='100' cy='100' r='62' stroke-dasharray='7 4'/%3E%3Ccircle cx='100' cy='100' r='48'/%3E%3Ccircle cx='100' cy='100' r='34' stroke-dasharray='2 3'/%3E%3C/g%3E%3Cg fill='%23b8862b'%3E%3Cpath d='M100 72l6.6 20.3h21.4l-17.3 12.6 6.6 20.3L100 112.6l-17.3 12.6 6.6-20.3-17.3-12.6h21.4z'/%3E%3C/g%3E%3C/svg%3E") right -60px center/300px no-repeat,radial-gradient(90% 160% at 0% 0%,#fffdf8 0,#fdf6ec 55%,#f9eddc 100%)!important}
+.bar .brand::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(#d9b25a,#d9b25a) top/100% 1px no-repeat,linear-gradient(90deg,#8c0f16,#c8102e 50%,#8c0f16) bottom/100% 2px no-repeat;opacity:.9}
 }
 @media(max-width:1023px){
 .bar .brand{background:none!important;padding:0!important;gap:10px!important}
-.bar .seal{width:42px!important;height:42px!important;border-radius:11px!important}
-.bar .brand b{font-size:clamp(14px,4vw,18px)!important;letter-spacing:.01em!important;white-space:normal}
-.bar .brand small{font-size:11px!important}.bar .brand>div:nth-child(2)>small::before{display:none}
-.brand-date{display:none}
+.bar .seal{width:42px!important;height:42px!important;border-radius:11px!important;box-shadow:0 0 0 1px #e8d3a6,0 6px 14px -8px #6e0b11aa!important}
+.bar .brand>div:nth-child(2){padding-left:0;border-left:0}
+.bd-eb{display:none}
+.bar .brand b{font-size:clamp(14px,4vw,18px)!important;letter-spacing:.02em!important;white-space:normal}
+.bar .brand small{font-size:11px!important}
+.brand-date,.bd-prov{display:none}
 }
+@media(min-width:1024px){.bar .wrap{background:linear-gradient(180deg,#fbf7f4,#f6f0eb)!important}}
 .bar::before{z-index:3}
 </style>
 <script>(()=>{const el=document.getElementById('brandDate');if(!el)return;const d=new Date(),W=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'],p=n=>String(n).padStart(2,'0');
