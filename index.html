@@ -3876,6 +3876,28 @@ document.addEventListener('keydown',function(e){var o=ov();if(e.key==='Escape'&&
 @media(max-width:1100px){.g-21{grid-template-columns:1fr}}
 @media(max-width:760px){.dbody{grid-template-columns:1fr}.donut{max-width:180px}}
 </style>
+<style id="navRowCss">/* Võ Lao: dòng menu riêng nằm dưới banner (máy tính) */
+@media(min-width:1024px){
+.bar .wrap{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto;align-items:center;gap:0 16px!important;padding:12px 26px 0!important;min-height:0!important;height:auto!important}
+.bar .brand{grid-column:1;grid-row:1;padding-bottom:12px!important}
+.bar .barright{grid-column:2;grid-row:1;margin:0!important;padding-bottom:12px;justify-content:flex-end}
+.bar .tabs{grid-column:1/-1;grid-row:2;display:flex!important;flex-direction:row;align-items:stretch;gap:2px!important;margin:0 -26px!important;padding:0 18px!important;background:linear-gradient(180deg,#fbf7f4,#f6f0eb)!important;border:0!important;border-top:1px solid #ecdcd5!important;border-radius:0 0 11px 11px!important;overflow-x:auto;scrollbar-width:none;flex:none!important}
+.bar .tabs::-webkit-scrollbar{display:none}
+.bar .tabs .tab,.bar .tabs .tab:hover,.bar .tabs .tab[aria-current=page],.bar .tabs .tab[data-page]:not([aria-current=page]),.bar .tabs .tab[data-page]:not([aria-current=page]):hover{position:relative;flex:none;width:auto;height:46px!important;padding:0 16px!important;gap:8px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;transform:none!important;filter:none!important;font-size:13.5px!important;font-weight:600!important;letter-spacing:.01em;color:#5a4a46!important;transition:color .15s,background .15s}
+.bar .tabs .tab svg{width:17px!important;height:17px!important;opacity:1;color:#9a7f78!important;transition:color .15s}
+.bar .tabs .tab:hover{color:#8c0f16!important;background:#ffffffb3!important}
+.bar .tabs .tab:hover svg{color:#b3141c!important}
+.bar .tabs .tab::after{content:'';position:absolute;left:14px;right:14px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:linear-gradient(90deg,#8c0f16,#c8102e 60%,#e3a92b);transform:scaleX(0);transition:transform .2s ease}
+.bar .tabs .tab:hover::after{transform:scaleX(.45)}
+.bar .tabs .tab[aria-current=page]{color:#8c0f16!important;font-weight:700!important;background:#fff!important}
+.bar .tabs .tab[aria-current=page] svg{color:#c8102e!important}
+.bar .tabs .tab[aria-current=page]::after{transform:scaleX(1)}
+.bar .tabs .tab[aria-current=page]::before{display:none!important}
+.bar .tabs #lnkBtn{margin-left:10px}
+.bar .tabs #lnkBtn::before{content:'';position:absolute;left:-6px;top:14px;bottom:14px;width:1px;background:#e2cfc7}
+.bar .tabs .tab:focus-visible{outline:2px solid #8c0f16;outline-offset:-4px}
+}
+</style>
 <script src="xa-bar.js"></script>
 </body>
 </html>
