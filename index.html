@@ -1556,7 +1556,8 @@ go();document.addEventListener('DOMContentLoaded',go);
   <div class="wrap">
     <div class="brand">
       <div class="seal"><img src="logo.png" alt="Cờ Đảng" width="40" height="40" decoding="async"></div>
-      <div><b>Đảng bộ xã Võ Lao</b><small>Theo dõi thu nộp đảng phí</small></div>
+      <div><b>Đảng bộ xã Võ Lao</b><small>Theo dõi thu nộp đảng phí · Tỉnh Lào Cai</small></div>
+      <div class="brand-date" id="brandDate" aria-label="Hôm nay"><small></small><b></b></div>
     </div>
     <nav class="tabs" aria-label="Chuyên mục">
       <button class="tab" data-page="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span>Tổng quan</span></button>
@@ -4006,6 +4007,32 @@ document.addEventListener('keydown',function(e){var o=ov();if(e.key==='Escape'&&
 #overview .ovhead .lede b{color:#9b0c22;font-weight:800}
 @media(max-width:760px){#overview .ovhead h1{font-size:clamp(22px,6.5vw,32px)!important}#overview .ovhead .eyebrow{font-size:10px!important;letter-spacing:.08em!important}}
 </style>
+<style id="bannerCCss">/* Võ Lao: banner mẫu 3 — nền kem, dáng núi, tên chữ có chân đỏ – vàng */
+.bar .brand{position:relative;align-items:center!important;gap:16px!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1240 70' preserveAspectRatio='none'%3E%3Cpath d='M0 70L0 44C80 30 140 20 220 34C300 48 360 18 450 22C540 26 600 52 700 40C800 28 860 6 960 18C1060 30 1140 44 1240 30L1240 70Z' fill='%23f2c27a' fill-opacity='.38'/%3E%3Cpath d='M0 70L0 56C120 44 200 50 300 56C420 62 520 36 640 44C760 52 860 60 980 48C1080 38 1160 46 1240 50L1240 70Z' fill='%23c8102e' fill-opacity='.15'/%3E%3C/svg%3E") bottom/100% 64px no-repeat,linear-gradient(180deg,#fff8ef 0%,#fdebd8 100%)!important}
+.bar .seal{width:62px!important;height:62px!important;border-radius:15px!important;background:#fff!important;box-shadow:0 0 0 1px #ecd0b0,0 10px 20px -10px #8c0f16aa!important;flex:none}
+.bar .brand>div:nth-child(2){min-width:0}
+.bar .brand b{display:block!important;font-family:'Noto Serif',Georgia,serif!important;font-weight:700!important;font-size:clamp(20px,2.3vw,30px)!important;line-height:1.25!important;letter-spacing:.03em!important;text-transform:uppercase;padding:2px 0 3px!important;white-space:nowrap;background:linear-gradient(90deg,#7a0d14,#c8102e 55%,#d98a1a)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;filter:drop-shadow(0 1px 0 #fff)}
+.bar .brand small{display:flex!important;align-items:center;gap:10px;margin-top:2px!important;font-size:13px!important;font-weight:600!important;color:#7a5a3a!important;letter-spacing:0!important;text-transform:none!important}
+.bar .brand>div:nth-child(2)>small::before{content:'';flex:none;width:30px;height:2px;border-radius:2px;background:#c8102e}
+.brand-date{margin-left:auto;text-align:right;flex:none;position:relative}
+.brand-date small{display:block!important;font-size:12.5px!important;font-weight:500!important;color:#7a5a3a!important}
+.brand-date small::before{display:none}
+.bar .brand .brand-date b{font-family:var(--sans)!important;font-weight:800!important;font-size:clamp(17px,1.7vw,22px)!important;letter-spacing:-.01em!important;text-transform:none;padding:0!important;background:none!important;-webkit-text-fill-color:#8c0f16!important;color:#8c0f16!important;filter:none}
+@media(min-width:1024px){
+.bar .wrap{padding-top:0!important}
+.bar .brand{margin:0 -26px!important;padding:20px 28px 26px!important;width:calc(100% + 52px)!important;flex-basis:calc(100% + 52px)!important}
+}
+@media(max-width:1023px){
+.bar .brand{background:none!important;padding:0!important;gap:10px!important}
+.bar .seal{width:42px!important;height:42px!important;border-radius:11px!important}
+.bar .brand b{font-size:clamp(14px,4vw,18px)!important;letter-spacing:.01em!important;white-space:normal}
+.bar .brand small{font-size:11px!important}.bar .brand>div:nth-child(2)>small::before{display:none}
+.brand-date{display:none}
+}
+.bar::before{z-index:3}
+</style>
+<script>(()=>{const el=document.getElementById('brandDate');if(!el)return;const d=new Date(),W=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'],p=n=>String(n).padStart(2,'0');
+el.querySelector('small').textContent=W[d.getDay()];el.querySelector('b').textContent=p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()})();</script>
 <script src="xa-bar.js"></script>
 </body>
 </html>
