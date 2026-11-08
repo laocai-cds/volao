@@ -4268,6 +4268,15 @@ document.addEventListener('click',e=>{const t=e.target;if(!t.closest)return;
  if(M.classList.contains('on')&&t.closest('#rankList .uname[data-cb]'))close()},true);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&M.classList.contains('on'))close()});
 })();</script>
+<style id="barRoundCss">/* Võ Lao: bo tròn 4 góc khung banner + menu */
+@media(min-width:1024px){
+html body .bar{border-radius:16px!important;overflow:hidden!important;border:1px solid #cfe3b4!important}
+html body .bar::before{border-radius:16px 16px 0 0!important}
+html body .bar .brand{border-radius:0!important}
+html body .bar .tabs{border-bottom-left-radius:16px!important}
+html body .bar .barright{border-bottom-right-radius:16px!important}
+}
+</style>
 <script src="xa-bar.js"></script>
 </body>
 </html>
