@@ -3920,33 +3920,33 @@ document.addEventListener('keydown',function(e){var o=ov();if(e.key==='Escape'&&
 .bar .barright .btn,.bar .barright .btn:hover{padding:0 10px!important;font-size:12px!important;gap:5px!important}
 }
 </style>
-<style id="kpiFx">/* Võ Lao: hiệu ứng cho 4 thẻ số liệu tổng quan */
-@keyframes kpIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
-@keyframes kpBar{0%{background-position:0% 50%}100%{background-position:200% 50%}}
-@keyframes kpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-@keyframes kpGlow{0%,100%{box-shadow:0 6px 14px -6px var(--k),0 0 0 0 color-mix(in srgb,var(--k) 35%,transparent)}50%{box-shadow:0 6px 14px -6px var(--k),0 0 0 7px color-mix(in srgb,var(--k) 0%,transparent)}}
-@keyframes kpPop{0%{transform:scale(1) rotate(0)}40%{transform:scale(1.16) rotate(-8deg)}70%{transform:scale(.96) rotate(4deg)}100%{transform:scale(1.08) rotate(0)}}
-#stats:not(.kp-done) .stat{animation:kpIn .6s cubic-bezier(.2,.75,.25,1) both}
-#stats:not(.kp-done) .stat:nth-child(2){animation-delay:.09s}
-#stats:not(.kp-done) .stat:nth-child(3){animation-delay:.18s}
-#stats:not(.kp-done) .stat:nth-child(4){animation-delay:.27s}
-#stats .stat{transition:transform .28s cubic-bezier(.2,.75,.25,1),box-shadow .28s,border-color .28s;will-change:transform}
-#stats .stat::before{content:'';position:absolute;top:0;bottom:0;left:-60%;width:45%;background:linear-gradient(100deg,transparent,#ffffffb8 50%,transparent);transform:skewX(-18deg);pointer-events:none;z-index:1;opacity:0}
-#stats .stat:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--k) 45%,#fff);box-shadow:0 16px 30px -16px color-mix(in srgb,var(--k) 70%,transparent),0 2px 6px #0f172a0f}
-#stats .stat:hover::before{opacity:1;left:120%;transition:left .75s ease,opacity .1s}
-#stats .stat::after{background:linear-gradient(90deg,var(--k),color-mix(in srgb,var(--k) 35%,#fff),var(--k),color-mix(in srgb,var(--k) 35%,#fff),var(--k));background-size:200% 100%;animation:kpBar 4s linear infinite;transition:height .25s}
-#stats .stat::after{display:block!important;height:4px;transform:none!important}
-#stats .stat:hover::after{height:6px}
-#stats .stat .ico{z-index:2;animation:kpFloat 3.2s ease-in-out infinite,kpGlow 2.6s ease-out infinite}
-#stats .stat:nth-child(2) .ico{animation-delay:.4s,.6s}
-#stats .stat:nth-child(3) .ico{animation-delay:.8s,1.2s}
-#stats .stat:nth-child(4) .ico{animation-delay:1.2s,1.8s}
-#stats .stat:hover .ico{animation:kpPop .55s ease forwards}
-#stats .stat strong{transition:letter-spacing .3s}
-#stats .stat:hover strong{letter-spacing:0}
-@media(prefers-reduced-motion:reduce){#stats .stat,#stats .stat .ico,#stats .stat::after{animation:none!important}#stats .stat:hover{transform:none}}
+<style id="tiltFx">/* Võ Lao: hiệu ứng thẻ số liệu giống Trạm Tấu — nghiêng 3D và quầng sáng theo con trỏ */
+.stat::after{display:block!important;height:4px;transform:none!important}
+.stat::before{z-index:0}
+.stat>*{position:relative;z-index:1}
+.stat>.ico{position:absolute}
+/* hiệu ứng khi trỏ chuột vào thẻ số liệu */
+@media(hover:hover) and (pointer:fine){
+.stat{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));will-change:transform}
+.stat::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--k) 26%,transparent),transparent 62%)}
+.stat::after{transition:height .3s,box-shadow .3s}
+.stat .ico{transition:transform .4s cubic-bezier(.3,1.6,.5,1),box-shadow .3s}
+.stat strong{transition:transform .35s cubic-bezier(.2,.8,.2,1);transform-origin:left center}
+.stat:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-7px);border-color:var(--k);box-shadow:0 22px 38px -18px color-mix(in srgb,var(--k) 70%,transparent),0 6px 14px -8px #0f172a33}
+.stat:hover.tilting{transition:transform .08s linear,box-shadow .35s,border-color .35s}
+.stat:hover::before{opacity:1}
+.stat:hover::after{height:7px;box-shadow:0 0 14px var(--k)}
+.stat:hover .ico{transform:rotate(-10deg) scale(1.15);box-shadow:0 0 0 6px color-mix(in srgb,var(--k) 20%,transparent),0 12px 22px -6px var(--k);animation:icoPulse 1.4s ease-out infinite}
+.stat:hover strong{transform:scale(1.05)}
+@keyframes icoPulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--k) 45%,transparent),0 12px 22px -6px var(--k)}100%{box-shadow:0 0 0 16px transparent,0 12px 22px -6px var(--k)}}
+}
 </style>
-<script>(()=>{const s=document.getElementById('stats');if(s)setTimeout(()=>s.classList.add('kp-done'),2500)})();</script>
+<script>/* thẻ số liệu: ánh sáng và độ nghiêng theo con trỏ */
+(()=>{if(!matchMedia('(hover:hover) and (pointer:fine)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  document.addEventListener('pointermove',e=>{const c=e.target.closest&&e.target.closest('.stat');if(!c)return;const b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width,y=(e.clientY-b.top)/b.height;
+    c.classList.add('tilting');c.style.setProperty('--mx',(x*100).toFixed(1)+'%');c.style.setProperty('--my',(y*100).toFixed(1)+'%');c.style.setProperty('--ry',((x-.5)*9).toFixed(2)+'deg');c.style.setProperty('--rx',((.5-y)*7).toFixed(2)+'deg')});
+  document.addEventListener('pointerout',e=>{const c=e.target.closest&&e.target.closest('.stat');if(!c||c.contains(e.relatedTarget))return;c.classList.remove('tilting');c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+})();</script>
 <style id="kpBCss">/* Võ Lao: khối tổng quan phương án B — 1 thẻ chính + 4 thẻ phụ */
 .heroline .kp-stamp{display:flex!important;align-items:center;gap:8px;padding:8px 14px!important;background:#fff!important;border:1px solid #dde4f0!important;border-radius:999px!important;white-space:nowrap}
 .heroline .kp-stamp small{order:0!important;font-size:12.5px;color:#5b6b7a}
