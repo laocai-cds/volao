@@ -1557,7 +1557,7 @@ go();document.addEventListener('DOMContentLoaded',go);
   <div class="wrap">
     <div class="brand">
       <div class="seal"><img src="logo.png" alt="Cờ Đảng" width="40" height="40" decoding="async"></div>
-      <div><b>Đảng bộ xã Võ Lao</b><small>Hệ thống theo dõi thu nộp đảng phí</small></div>
+      <div><b>Đảng bộ xã <span class="bn">Võ Lao</span></b><small>Hệ thống theo dõi thu nộp đảng phí</small></div>
       <div class="brand-info" id="brandInfo"><span class="bi"><span class="bi-l">Hôm nay</span><span class="bi-v" data-k="d"></span></span><span class="bi"><span class="bi-l">Kỳ thu</span><span class="bi-v" data-k="m"></span></span></div>
     </div>
     <nav class="tabs" aria-label="Chuyên mục">
@@ -3659,7 +3659,7 @@ function log(a){cfg.audit.unshift({t:new Date().toLocaleString('vi-VN',{hour12:f
 function paintAudit(){const b=g('scAuditBody');if(!b)return;b.innerHTML=cfg.audit.length?cfg.audit.map(x=>'<div><small>'+E(x.t)+'</small><b>'+E(x.e)+'</b> — '+E(x.a)+'</div>').join(''):'<div>Chưa có thao tác nào được ghi.</div>';const n=g('scAuditNote');if(n)n.textContent=dirty?'Có thao tác chưa lưu: bấm “Lưu tùy chỉnh” ở tab Tùy chỉnh để ghi lên Google Sheet.':''}
 /* ---- áp dụng lên trang ---- */
 function applyBrand(){const b=cfg.brand;
-  const h=document.querySelector('.brand b');if(h){if(!h.dataset.o)h.dataset.o=h.textContent;h.textContent=b.name||h.dataset.o}
+  const h=document.querySelector('.brand b');if(h){if(!h.dataset.o)h.dataset.o=h.textContent;{const nm=b.name||h.dataset.o,m=/^(Đảng bộ (?:xã|phường|thị trấn))\s+(.+)$/i.exec(nm);if(m){h.textContent=m[1]+' ';const sp=document.createElement('span');sp.className='bn';sp.textContent=m[2];h.appendChild(sp)}else h.textContent=nm}}
   const bd=document.querySelector('.brand');let s=bd&&bd.querySelector('small');
   if(bd&&b.sub){if(!s){s=document.createElement('small');bd.querySelector('b').parentNode.appendChild(s);s.dataset.sc='1'}if(!s.dataset.o)s.dataset.o=s.textContent;s.textContent=b.sub}
   else if(s){if(s.dataset.sc)s.remove();else if(s.dataset.o!=null)s.textContent=s.dataset.o}
@@ -4412,6 +4412,8 @@ html body .bar .tabs .tab{white-space:nowrap!important;overflow-wrap:normal!impo
 html body .bar .tabs .tab span b{font-weight:inherit}
 html body .bar .tabs .tab .ls{display:inline}
 html body .bar .tabs .tab .lf{display:none}
+@media(max-width:1023px){html body .bar .brand b .bn{display:block}}
+@media(max-width:380px){html body .bar .brand b{font-size:12px!important;letter-spacing:0!important;white-space:nowrap!important}html body .bar .barright{gap:4px!important}html body .bar .barright .btn{padding:7px!important}html body .bar .brand{gap:7px!important}html body .bar .wrap{column-gap:8px!important}}
 html body .ph h2,html body .dhead b,html body #overview .ph h2,html body #overview .dhead b{white-space:nowrap!important;font-size:clamp(10.5px,3.35vw,14px)!important;padding-right:42px!important;max-width:100%}
 
 html body .tabsum,html body .tabsum>.tsTabs,html body .g>*,html body .page>*{min-width:0!important;max-width:100%}
