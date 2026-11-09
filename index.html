@@ -4292,7 +4292,7 @@ html body #stats .cardx .cx-valid small{font-size:8.5px!important;opacity:1!impo
 html body #stats .kp-mini>span,html body #stats .kp-mini small{color:#4b5a6e}
 </style>
 <style id="footCss">/* Chân trang thiết kế lại */
-html body .foot{padding:0!important;margin-top:34px;border-top:0!important;background:linear-gradient(135deg,#4a9a2a 0%,#2f7a1f 55%,#1b4a15 100%)!important;color:#fff;position:relative;box-shadow:none!important}
+html body .foot{width:min(calc(100% - 64px),1376px);margin:34px auto 24px!important;border-radius:12px;overflow:hidden;padding:0!important;border-top:0!important;background:linear-gradient(135deg,#4a9a2a 0%,#2f7a1f 55%,#1b4a15 100%)!important;color:#fff;position:relative;box-shadow:none!important}
 html body .foot::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#c9a227,#f7e08a,#c9a227)}
 html body .foot>.wrap.ft{display:block;padding:30px 32px 18px}
 .ft-main{display:flex;align-items:center;justify-content:center;padding-bottom:20px;border-bottom:1px solid #ffffff38}
@@ -4302,6 +4302,8 @@ html body .foot>.wrap.ft{display:block;padding:30px 32px 18px}
 .ft-o{font-size:13px;color:#e6f5d6}
 .ft-copy{margin:14px 0 0;text-align:center;font-size:12.5px;color:#d9eec4}
 .ft-copy b{color:#ffe9a6;font-weight:700}
+@media(max-width:1280px){html body .foot{width:calc(100% - 52px)}}
+@media(max-width:1023px){html body .foot{width:calc(100% - 32px)}}
 @media(max-width:700px){html body .foot>.wrap.ft{padding:24px 18px 16px}}
 @media print{.foot{background:#fff!important;color:#000}.foot *{color:#000!important}}
 </style>
