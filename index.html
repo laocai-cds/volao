@@ -554,7 +554,8 @@ label.f{display:block;font-size:13px;font-weight:600;margin:14px 0 6px;color:var
 @media(prefers-reduced-motion:reduce){.page.on{animation:none}.ldot{animation:none}}
 @media print{.bar,.notice,.livebar{display:none}.notice,main,.livebar,.foot{margin-left:0}}
 /* toàn bộ khung hình ở mức 80% trên máy tính */
-@media(min-width:1024px){html{zoom:.9}:root{--wrap:1360px}}
+@media(min-width:600px){html{zoom:.9}}
+@media(min-width:1024px){:root{--wrap:1360px}}
 /* đang tải: che số dự phòng bằng khung chờ */
 .loadnote{position:relative;display:inline-flex;align-self:flex-start;align-items:center;gap:8px;margin:14px 0 0;padding:6px 12px;border-radius:99px;background:#ffffff1f;border:1px solid #ffffff33;color:#fff;font-size:12.5px;font-weight:600}
 .loadnote::before{content:'';width:12px;height:12px;border-radius:50%;border:2px solid #ffffff66;border-top-color:var(--vang-l);animation:btspin .8s linear infinite}
