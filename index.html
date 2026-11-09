@@ -4394,6 +4394,26 @@ html body .cbm-acts{margin-top:10px!important}
 html body .cbm-acts .btn{padding:8px 10px!important}
 @media(max-width:480px){html body .cbm-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 </style>
+<style id="mobileMenuFix">/* Võ Lao: menu dưới cùng trên điện thoại — các mục chia đều, không bị cắt, không phải kéo ngang */
+@media(max-width:1023px){
+html body{padding-bottom:calc(76px + env(safe-area-inset-bottom))!important}
+html body .bar .tabs{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;z-index:60;display:flex!important;flex-direction:row!important;align-items:stretch;gap:2px!important;width:auto!important;margin:0!important;overflow:visible!important;padding:6px 6px calc(6px + env(safe-area-inset-bottom))!important;background:linear-gradient(180deg,#fbfef5,#f1f8e4)!important;border:0!important;border-top:1px solid #d3e8b5!important;border-radius:0!important;box-shadow:0 -8px 24px -14px #1f4d1255!important}
+html body .bar .tabs .tab{flex:1 1 0!important;min-width:0!important;width:auto!important;height:auto!important;min-height:54px;display:flex!important;flex-direction:column!important;align-items:center;justify-content:center;gap:3px!important;padding:6px 2px!important;border:0!important;border-radius:10px!important;background:transparent!important;box-shadow:none!important;color:#55654a!important;font-size:10.5px!important;font-weight:600!important;line-height:1.15!important;text-align:center;white-space:normal!important;overflow-wrap:anywhere}
+html body .bar .tabs .tab span{display:block;max-width:100%}
+html body .bar .tabs .tab svg{width:21px!important;height:21px!important;flex:none;opacity:1!important;color:#7c9a62!important}
+html body .bar .tabs .tab[aria-current=page]{background:#e3f1cc!important;color:#2f6e1d!important;font-weight:700!important}
+html body .bar .tabs .tab[aria-current=page] svg{color:#2f6e1d!important}
+html body .bar .tabs .tab[aria-current=page]::before{display:block!important;content:'';position:absolute;left:30%;right:30%;top:-7px;bottom:auto;width:auto;height:3px;border-radius:0 0 3px 3px;background:#4e9a2a!important}
+html body .bar .tabs .tab::after{display:none!important}
+html body .bar .tabs #lnkBtn{margin-left:0!important}
+html body .bar .tabs #lnkBtn::before{display:none!important}
+html:not(.is-admin) body .bar .tabs .admin-only{display:none!important}
+html body .tabsum,html body .tabsum>.tsTabs,html body .g>*,html body .page>*{min-width:0!important;max-width:100%}
+html body .tsTabs{overflow-x:auto!important;-webkit-overflow-scrolling:touch}
+html body .tsTabs button{padding:10px 14px!important}
+html body #overview .ovhead>*{min-width:0!important;max-width:100%}
+}
+</style>
 </body>
 </html>
 
