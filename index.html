@@ -4277,6 +4277,16 @@ html body .bar .tabs{border-bottom-left-radius:16px!important}
 html body .bar .barright{border-bottom-right-radius:16px!important}
 }
 </style>
+<style id="cardFitCss">/* Võ Lao: số trên thẻ co theo bề rộng thẻ (không tràn/cắt), thẻ cao theo nội dung */
+html body #stats .stat.kp-hero.cardx{container-type:inline-size;min-height:auto!important;overflow:hidden}
+html body #stats .cx-num{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
+html body #stats .cardx .cx-num b{font-size:min(34px,6.4cqw)!important;letter-spacing:.04em!important;white-space:nowrap}
+html body #stats .cardx .cx-num small{white-space:nowrap}
+@media(max-width:560px){html body #stats .cardx .cx-num b{font-size:min(22px,6.4cqw)!important}}
+@media(max-width:1280px) and (min-width:1101px){html body #stats.kpB.kpis{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr)!important;gap:14px}html body #stats.kpB .kp-hero{grid-row:span 2;grid-column:auto}html body #stats.kpB .kp-mini{padding:16px 18px;min-height:0}}
+@media(max-width:1100px) and (min-width:561px){html body #stats .stat.kp-hero.cardx{max-width:560px;justify-self:center;width:100%}}
+</style>
+
 <script src="xa-bar.js"></script>
 </body>
 </html>
